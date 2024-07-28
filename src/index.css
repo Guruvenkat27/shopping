@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.search-box{
+  border: 1px solid gray;
+  width: 36vw;
+  height:5vh;
+}
+.search-box input{
+  border: none;
+  padding-left: 20px;
+  width: 93%;
+  outline: none;
+  background-color: transparent;
+}
+.navbarbox{
+  background-color: rgb(2, 2, 40);
+  color: white;
+}

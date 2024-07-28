@@ -7,7 +7,10 @@ import { auth } from "../../database/Database.js";
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({ email: '', password: '' });
+  const [errors, setErrors] = useState({
+     email: '',
+     password: ''
+     });
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -66,7 +69,7 @@ const Login = () => {
           </span>
           <Link className='text-blue-600'>Forgot password</Link>
         </div>
-        <button type='submit' className='bg-blue-600 h-[4.5vh]'>Login</button>
+        <button type='submit' className='bg-blue-600 text-white h-[4.5vh]'>Login</button>
         <div className='flex justify-end text-[13.5px] gap-1'>
           <span>Not have an account? <Link className='text-blue-600' to={"/signup"}>Register now</Link></span>
         </div>

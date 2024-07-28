@@ -109,7 +109,7 @@ const Register = () => {
           />
           {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
           {errors.general && <p className="text-red-500 text-sm">{errors.general}</p>}
-          <button type='submit' className='bg-blue-600 h-[4.5vh]'>Register</button>
+          <button type='submit' className='bg-blue-600 text-white h-[4.5vh]'>Register</button>
           <div className='flex justify-end text-[13.5px] gap-1'>
             <span>Already have an account? <Link className='text-blue-600' to={"/login"}>Login now</Link></span>
           </div>

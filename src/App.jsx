@@ -1,21 +1,38 @@
 import React from 'react'
-import { BrowserRouter,Routes,Route } from 'react-router-dom'
+import { Routes,Route } from 'react-router-dom'
 import Home from './Home'
 import Loginpage from './components/register/Loginpage'
 import Registerpage from './components/register/Registerpage'
+import Products from './components/products/Products'
+import { SearchProvider } from './search/Searchcontext'
+import Productdetails from './components/products/Productdetails'
+import { CartProvider } from './cart/Cartcontext'
+import Cartpage from './cart/Cartpage'
+
 
 
 const App = () => {
   return (
     <div>
-      <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Home />} />
+    
+  
+   <CartProvider>
+   <SearchProvider>
+    <Routes>
+       
+       <Route path='/' element={<Home />} />
         <Route path='/login' element={<Loginpage />} />
         <Route path='/signup' element={<Registerpage />} />
-      </Routes>
+        <Route path='/products' element={<Products />} />
+        <Route path='/products/:productId' element={<Productdetails />} />
+        <Route path='/cart' element={<Cartpage />} />
       
-      </BrowserRouter>
+      </Routes>
+    </SearchProvider>
+   </CartProvider>
+      
+    
+    
       
     </div>
   )

@@ -2,18 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 .search-box{
-  border: 1px solid gray;
+  
   width: 36vw;
+  background-color: white;
   height:5vh;
 }
 .search-box input{
+  color: black;
   border: none;
   padding-left: 20px;
-  width: 93%;
+  padding-right: 20px;
+  width: 92%;
   outline: none;
   background-color: transparent;
 }
 .navbarbox{
   background-color: rgb(2, 2, 40);
   color: white;
+}
+.loginform{
+  border: 1px solid rgba(128, 128, 128, 0.492);
+  border-radius: 9px;
+  box-shadow: 0 0 10px rgba(128, 128, 128, 0.522);
+  padding: 30px 15px;
+}
+.loginform input{
+  border: 1px solid gray;
+}
+.nav-box2{
+  background-color: rgba(4, 4, 55, 0.897);
+  color: white;
+}
+.items-box{
+  display: grid;
+  padding: 10px 0;
+  grid-template-columns: repeat(4,250px);
+  gap: 30px;
+  margin-top: 12px;
+}
+.itemsall{
+  box-shadow: 0 0 10px rgba(128, 128, 128, 0.511);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 13px;
+  gap: 6px;
+  align-items: center;
+}
+.colorsbox{
+  display: grid;
+  grid-template-columns: repeat(8,60px);
+  gap: 8px;
 }

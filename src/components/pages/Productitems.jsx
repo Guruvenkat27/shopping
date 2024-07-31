@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Image from './Image'
+import FilterBox from './Filter'
 
 const Productitems = () => {
 
@@ -10,7 +11,10 @@ console.log(data)
   return (
     <>
       <div className='flex px-[40px] gap-[30px] py-[13px]'>
-        <div className='w-[18vw]'><h1 className='font-bold text-[20px]'>FILTER</h1></div>
+        <div className='w-[18vw] fliter-box'><h1 className='font-bold text-[20px] '>FILTER</h1>
+        <FilterBox />
+        
+        </div>
         <div>
 <h1 className='font-bold text-[24px]'>Results</h1>
 <div className='items-box'>

@@ -39,12 +39,16 @@
   grid-template-columns: repeat(4,250px);
   gap: 30px;
   margin-top: 12px;
+  background-color: rgba(128, 128, 128, 0.088);
+  box-shadow: 0 0 10px rgba(128, 128, 128, 0.371);
+  padding: 18px 20px;
 }
 .itemsall{
   box-shadow: 0 0 10px rgba(128, 128, 128, 0.511);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
+  background-color: white;
   padding: 14px 13px;
   gap: 6px;
   align-items: center;
@@ -53,4 +57,22 @@
   display: grid;
   grid-template-columns: repeat(8,60px);
   gap: 8px;
+}
+.cartbox{
+  box-shadow: 0 0 10px rgba(128, 128, 128, 0.337);
+  padding: 13px 11px ;
+}
+.fliter-box{
+  padding: 10px 10px;
+}
+.footerbox{
+  background-color: rgb(2, 2, 40);
+  height: 40vh;
+
+}
+.load{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
 }

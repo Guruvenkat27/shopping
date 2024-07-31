@@ -28,7 +28,7 @@ export const SearchProvider = ({ children }) => {
         product_condition: 'ALL'
       },
       headers: {
-        'x-rapidapi-key': '739ce0b840msh494d1fdebf6c234p1c67a6jsn9ab49d0394d4',
+        'x-rapidapi-key': 'bf338cc407msh2627a187536db81p177a69jsn9c13d14d6d1d',
         'x-rapidapi-host': 'real-time-amazon-data.p.rapidapi.com'
       }
     };

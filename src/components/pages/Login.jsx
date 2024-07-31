@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from "../../database/Database.js";
-
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -12,6 +11,7 @@ const Login = () => {
      password: ''
      });
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,7 +34,9 @@ const Login = () => {
       try {
         await signInWithEmailAndPassword(auth, email, password);
         console.log('Successfully logged in');
-        navigate('/'); 
+        localStorage.setItem("user", JSON.stringify({ email })); // Store user details in local storage
+        const from = location.state?.from?.pathname || '/';
+        navigate(from, { replace: true }); 
       } catch (error) {
         console.error('Error logging in: ', error);
         setErrors({ general: 'Failed to log in. Please check your credentials and try again.' });

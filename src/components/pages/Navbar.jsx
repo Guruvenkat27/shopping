@@ -9,6 +9,7 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { FaShoppingCart } from "react-icons/fa";
 import { Cartcontext } from '../../cart/Cartcontext';
 import Image from './Image';
+import { FaBars } from "react-icons/fa";
 
 const Navbar = () => {
   const user = useAuth();
@@ -33,10 +34,11 @@ const Navbar = () => {
   return (
     <>
       <div>
-        <div className='flex items-center justify-between px-[50px] py-[10px] navbarbox'>
+        <div className='flex items-center justify-between px-[30px] py-[10px] navbarbox'>
           <div className='font-bold text-[26px] overflow-hidden h-[7vh] flex items-center justify-center'>
             <Link to={"/"} className=''><Image src="/public/logo-white1.png " className=" h-[30vh] " /></Link>
           </div>
+          <div></div>
           <div>
             <form onSubmit={handleSearch} className='flex items-center search-box rounded-md overflow-hidden'>
               <input
@@ -51,6 +53,7 @@ const Navbar = () => {
               </button>
             </form>
           </div>
+          <div></div>
           <div className='flex items-center gap-9'>
             <div>
               {user ? (
@@ -87,7 +90,8 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <div className='nav-box2 flex items-center gap-8 pl-12 py-3'>
+        <div className='nav-box2 flex items-center gap-8 pl-7 py-3'>
+        <FaBars className='text-[21px]' />
           <button>Phones</button>
           <button>Furniture</button>
           <button>Electronics</button>

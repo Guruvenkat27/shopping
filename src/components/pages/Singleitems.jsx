@@ -14,7 +14,7 @@ const Singleitems = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedImage, setSelectedImage] = useState(null); // State for the selected image
+  const [selectedImage, setSelectedImage] = useState(null); 
   const { addToCart } = useContext(Cartcontext);
 
   const fetchProduct = async (asin) => {
@@ -36,7 +36,7 @@ const Singleitems = () => {
     try {
       const response = await axios.request(options);
       setProduct(response.data);
-      setSelectedImage(response.data.data.product_photo); // Set initial big image
+      setSelectedImage(response.data.data.product_photo); 
       console.log(response.data);
       localStorage.setItem("itemdetails", JSON.stringify(response.data));
     } catch (error) {
@@ -50,21 +50,24 @@ const Singleitems = () => {
     fetchProduct(productId);
   }, [productId]);
 
-  if (loading) return <div className='load'>Loading...</div>;
+  if (loading) return <div className='relative'><div className='load'>Loading...</div></div>;
   if (error) return <div>Error: {error}</div>;
   if (!product) return <div>No product found</div>;
 
   const { data } = product;
 
   // Ensure data and product properties are available
-  if (!data || !data.product_photos || !data.product_photo || !data.product_title || !data.product_star_rating || !data.product_price || !data.product_variations || !data.product_variations.color) {
-    return <div>Product data is not available</div>;
-  }
+  const productPhotos = data.product_photos || [];
+  const productPhoto = data.product_photo || '';
+  const productTitle = data.product_title || 'No title available';
+  const productRating = data.product_star_rating || 'No rating';
+  const productPrice = data.product_price || 'No price';
+  const colorVariations = (data.product_variations && data.product_variations.color) || [];
 
   const handleAddToCart = () => {
-    const isAuthenticated = Boolean(localStorage.getItem("user")); // Check if the user is authenticated
+    const isAuthenticated = Boolean(localStorage.getItem("user")); 
     if (!isAuthenticated) {
-      navigate("/login", { state: { from: location } }); // Pass the current location to the login page
+      navigate("/login", { state: { from: location } });
     } else {
       addToCart(data);
       toast.success('Item added to cart!', {
@@ -93,7 +96,7 @@ const Singleitems = () => {
       <ToastContainer />
       <div className='flex mt-6 justify-center gap-4 mb-9'>
         <div className='flex flex-col gap-2 items-center overflow-y-scroll h-[70vh]'>
-          {data.product_photos.map((item) => (
+          {productPhotos.map((item) => (
             <div className='border rounded-md w-[6vw] p-[7px]' key={item.asin} onClick={() => handleImageClick(item)}>
               <Image src={item} className="h-[10vh] w-[100%] cursor-pointer" />
             </div>
@@ -103,16 +106,16 @@ const Singleitems = () => {
           <Image src={selectedImage} />
         </div>
         <div className='ml-3 flex flex-col'>
-          <p className='font-bold text-[24px] w-[40vw]'>{data.product_title}</p>
+          <p className='font-bold text-[24px] w-[40vw]'>{productTitle}</p>
           <div className='flex items-center'>
             <p className='flex bg-green-600 w-[3vw] rounded-md justify-center text-[13px] items-center gap-1 text-white'>
-              {data.product_star_rating}
+              {productRating}
               <FaStar />
             </p>
-            <span className="ml-2 text-xl">{data.product_star_rating}</span>
+            <span className="ml-2 text-xl">{productRating}</span>
           </div>
           <div>
-            <p>Price: <span>{data.product_price}</span></p>
+            <p>Price: <span>{productPrice}</span></p>
           </div>
           <div className='flex mt-3 gap-2'>
             <button className='flex bg-[darkblue] w-[25vw] h-[6vh] text-[20px] text-white items-center justify-center' onClick={handleAddToCart}>
@@ -125,7 +128,7 @@ const Singleitems = () => {
           <div className='flex flex-col gap-3 mt-3'>
             <h1 className='font-bold'>Colors</h1>
             <div className='colorsbox'>
-              {data.product_variations.color.map((item) => (
+              {colorVariations.map((item) => (
                 <div className='border rounded-md cursor-pointer' onClick={() => handleColorVariationClick(item.asin)} key={item.asin}>
                   <Image src={item.photo} className="w-[4vw] h-[7vh]" />
                 </div>

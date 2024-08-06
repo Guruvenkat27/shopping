@@ -28,9 +28,11 @@
 // //     })
 // // }
 // src/hooks/useAuth.js
+// useAuth.js
+
 import { useEffect, useState } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../database/Database'; 
+import { onAuthStateChanged, signOut as firebaseSignOut } from 'firebase/auth';
+import { auth } from '../database/Database'; // Import your initialized auth
 
 const useAuth = () => {
   const [user, setUser] = useState(null);
@@ -40,11 +42,18 @@ const useAuth = () => {
       setUser(user);
     });
 
-
     return () => unsubscribe();
   }, []);
 
-  return user;
+  const signOut = async () => {
+    try {
+      await firebaseSignOut(auth); // Use firebaseSignOut with the auth instance
+    } catch (error) {
+      throw new Error('Sign out failed: ' + error.message);
+    }
+  };
+
+  return { user, signOut };
 };
 
 export default useAuth;

@@ -1,17 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from "../../database/Database.js";
+import { LocationContext } from '../Location/LocationContext.jsx'; // Adjust path as needed
+import axios from 'axios';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({
-     email: '',
-     password: ''
-     });
+  const [errors, setErrors] = useState({ email: '', password: '' });
   const navigate = useNavigate();
   const location = useLocation();
+  const { fetchLocation, location: userLocation, error, setCityAndPinCode } = useContext(LocationContext) || {};
+
+  const getGeocodingData = async (latlng) => {
+    try {
+      const options = {
+        method: 'GET',
+        url: 'https://map-geocoding.p.rapidapi.com/json',
+        params: { latlng },
+        headers: {
+          'x-rapidapi-key': '739ce0b840msh494d1fdebf6c234p1c67a6jsn9ab49d0394d4',
+          'x-rapidapi-host': 'map-geocoding.p.rapidapi.com'
+        }
+      };
+
+      const response = await axios.request(options);
+      const { results } = response.data;
+
+      if (results && results.length > 0) {
+        const addressComponents = results[0].address_components;
+
+        let city = '';
+        let pinCode = '';
+
+        addressComponents.forEach(component => {
+          if (component.types.includes('locality')) {
+            city = component.long_name;
+          }
+          if (component.types.includes('postal_code')) {
+            pinCode = component.long_name;
+          }
+        });
+
+        console.log('City:', city);
+        console.log('Pin Code:', pinCode);
+
+        setCityAndPinCode(city, pinCode);
+      } else {
+        console.warn('No results found');
+      }
+    } catch (error) {
+      console.error('Error fetching geocoding data:', error);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,10 +77,20 @@ const Login = () => {
         await signInWithEmailAndPassword(auth, email, password);
         console.log('Successfully logged in');
         localStorage.setItem("user", JSON.stringify({ email })); // Store user details in local storage
+
+        // Fetch user location and geocoding data after successful login
+        await fetchLocation();
+        if (userLocation) {
+          const latlng = `${userLocation.latitude},${userLocation.longitude}`;
+          await getGeocodingData(latlng);
+        } else {
+          console.warn('User location not available.');
+        }
+
         const from = location.state?.from?.pathname || '/';
-        navigate(from, { replace: true }); 
+        navigate(from, { replace: true });
       } catch (error) {
-        console.error('Error logging in: ', error);
+        console.error('Error logging in:', error);
         setErrors({ general: 'Failed to log in. Please check your credentials and try again.' });
       }
     }

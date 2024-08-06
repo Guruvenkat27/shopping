@@ -3,6 +3,8 @@ import Image from './Image'
 import Footer from './Footer';
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+import Rightscroll from './Rightscroll';
+import Chatbot from './Chatbot';
 const Homedisplay = () => {
     const scrollRef = useRef(null);
 
@@ -87,9 +89,9 @@ const Homedisplay = () => {
         </div>
         <button className='arrow right-arrow' onClick={scrollRight}><IoIosArrowForward /></button>
 
-    
+    <div  ><Chatbot  /></div>
       </div>
-      <div className='  absolute  top-[45%] w-[100%] left-0'>
+      <div className='  absolute  top-[38%] w-[100%] left-0'>
        <div className='homegrid'>
         <div className='homegridbox py-[18px]'>
             <h1 className='pl-[20px] font-bold text-[18px]' >Pick up where you left off</h1>
@@ -183,6 +185,7 @@ const Homedisplay = () => {
             <span className='text-[13px] text-sky-500 font-semibold cursor-pointer  mt-6'>See more</span>
         </div>
         </div>
+        <Rightscroll />
         <div className='homegrid'>
      
         <div className='homegridbox flex flex-col gap-2 py-[18px] px-5'>
@@ -234,6 +237,7 @@ const Homedisplay = () => {
        
       
         </div>
+        <Rightscroll />
         <Footer />
       </div>
 

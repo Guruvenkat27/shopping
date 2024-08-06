@@ -38,13 +38,13 @@ const CartItems = () => {
               </button>
             </div>
           ) : (
-            <p>Your cart is empty.</p>
+            <p className='px-[20px]'>Your cart is empty.</p>
           )}
         </div>
         <div className='mt-10 flex flex-col gap-4'>
           <span>Subtotal ({cartCount} items) : <b>${calculateSubtotal().toFixed(2)}</b></span>
           {user ? (
-            <button className='rounded-md h-[5vh] text-white bg-red-500'>Checkout</button>
+            <button className='rounded-md h-[5vh] text-white bg-red-500'><Link to={'/checkout'}>CheckOut</Link></button>
           ) : (
             <button className='rounded-md h-[5vh] text-white bg-red-500'>
               <Link to={"/login"}>Login to proceed</Link>

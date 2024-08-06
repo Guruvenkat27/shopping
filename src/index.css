@@ -3,7 +3,7 @@
 @tailwind utilities;
 .search-box{
   
-  width: 36vw;
+  width: 44vw;
   background-color: white;
   height:5vh;
 }
@@ -67,7 +67,7 @@
 }
 .footerbox{
   background-color: rgb(2, 2, 40);
-  height: 40vh;
+ 
 
 }
 .load{
@@ -167,4 +167,101 @@
 }
 .smallbox div img{
   height: 7.4vw;
+}
+.mainboxx {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 0 10px gray;
+  padding: 20px 10px;
+}
+
+.imagescrolll {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.imagescrolll .flex {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.scrolldiv {
+  flex-shrink: 0;
+}
+
+.arroww {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 20px;
+  border: none;
+  padding: 40px 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.left-arroww {
+  left: 0;
+}
+
+.right-arroww {
+  right: 0;
+}
+
+.mainboxx::-webkit-scrollbar {
+  height: 10px;
+}
+
+.mainboxx::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+.mainboxx::-webkit-scrollbar-track {
+  background: transparent;
+}
+.insideboxgrid span:hover{
+  text-decoration: underline;
+  color: orangered;
+
+
+}
+.inside-box::before {
+  content: '';
+  position: absolute;
+  top: -10px; /* Adjust the position as needed */
+  left: 72%;
+  transform: translateX(-50%);
+  border-width: 0 10px 10px 10px; /* Adjust the size as needed */
+  border-style: solid;
+  border-color: transparent transparent white transparent; /* Match the color of your box */
+}
+.insideboxgridd span{
+  width: 15vw;
+  cursor: pointer;
+  padding: 0 10px;
+}
+.insideboxgridd span:hover{
+  color: orangered;
+  text-decoration: underline;
+}
+.insideboxgridd{
+  padding: 10px;
+}
+.insideboxgridd::before {
+  content: '';
+  position: absolute;
+  top: -10px; /* Adjust the position as needed */
+  left: 81%;
+  transform: translateX(-50%);
+  border-width: 0 10px 10px 10px; /* Adjust the size as needed */
+  border-style: solid;
+  border-color: transparent transparent white transparent; /* Match the color of your box */
+}
+.inside-box{
+  box-shadow: 0 0 10px rgba(128, 128, 128, 0.547);
 }
